@@ -1,2 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-export const INDEX_PATH = '/';
+export const DASHBOARD_PATH = '/';
+export const DETAIL_PATH = '/detail/:type/:id';
+export const SEARCH_PATH = '/search';

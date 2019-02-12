@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ModalPlayer from '../components/Modals/Player';
+
 import Toast from '../components/Toast';
 
 class App extends React.Component {
 
 	renderModals() {
 		return (
-			<div />
+			<div>
+				<ModalPlayer />
+			</div>
 		);
 	}
 

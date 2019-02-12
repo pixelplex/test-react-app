@@ -1,24 +1,19 @@
 {
-	"name": "pixelplex-app",
-	"description": "PixelPlex React Redux app",
-	"version": "0.3.0",
-	"repository": {
-		"type": "git",
-		"url": "git@gitlab.pixelplex.by:full-stack/frontend.git"
-	},
-	"homepage": "https://gitlab.pixelplex.by/full-stack/frontend",
+	"name": "react-code-assignment",
+	"description": "React Code Assignment",
+	"version": "0.1.0",
 	"license": "UNLICENSED",
 	"private": true,
 	"scripts": {
 		"start": "cross-env NODE_ENV=local webpack-dev-server --mode development --progress --colors --history-api-fallback --hot --inline",
 		"build": "cross-env NODE_ENV=production webpack --progress --display-error-details --colors --mode production",
 		"build-dev": "cross-env NODE_ENV=development webpack --progress --display-error-details --colors --mode production",
-		"build-stage": "cross-env NODE_ENV=stage webpack --progress --display-error-details --colors --mode production",
 		"lint": "$(npm bin)/eslint 'src/**/*.jsx' 'src/**/*.js'",
 		"lint-win": "cross-env eslint 'src/**/*.jsx' 'src/**/*.js' --fix",
 		"stylelint": "stylelint '**/*.scss'; --config src/assets/.stylelintrc.json"
 	},
 	"dependencies": {
+		"axios": "^0.18.0",
 		"config": "^1.30.0",
 		"connected-react-router": "^6.1.0",
 		"core-js": "^2.5.7",
@@ -26,7 +21,6 @@
 		"file-loader": "^1.1.11",
 		"history": "^4.7.2",
 		"immutable": "^3.8.2",
-		"isomorphic-fetch": "^2.2.1",
 		"lodash": "^4.17.10",
 		"node-sass": "^4.11.0",
 		"prop-types": "^15.6.1",

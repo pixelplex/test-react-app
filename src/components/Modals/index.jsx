@@ -1,4 +1,4 @@
 /* eslint-disable import/prefer-default-export */
-import ModalConfirm from './ModalConfirm';
+import ModalPlayer from './Player';
 
-export { ModalConfirm };
+export { ModalPlayer };

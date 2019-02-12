@@ -1,3 +1,6 @@
 module.exports = {
-	api: '',
+	api: {
+		url: 'https://api.themoviedb.org',
+		key: '',
+	},
 };
