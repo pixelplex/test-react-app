@@ -18,23 +18,23 @@ class Search extends React.Component {
 					<div className="title">Search result</div>
 					<div className="result-container">
 						<Link to="/detail/:type/:id" className="element">
-							<div className="image" />
+							<img className="image" src="../images/film.jpg" alt="" />
 							<div className="film-title">Film Title</div>
 						</Link>
 						<Link to="/detail/:type/:id" className="element">
-							<div className="image" />
+							<img className="image" src="../images/film.jpg" alt="" />
 							<div className="film-title">Film Title</div>
 						</Link>
 						<Link to="/detail/:type/:id" className="element">
-							<div className="image" />
+							<img className="image" src="../images/film.jpg" alt="" />
 							<div className="film-title">Film Title</div>
 						</Link>
 						<Link to="/detail/:type/:id" className="element">
-							<div className="image" />
+							<img className="image" src="../images/film.jpg" alt="" />
 							<div className="film-title">Film Title</div>
 						</Link>
 						<Link to="/detail/:type/:id" className="element">
-							<div className="image" />
+							<img className="image" src="../images/film.jpg" alt="" />
 							<div className="film-title">Film Title</div>
 						</Link>
 					</div>

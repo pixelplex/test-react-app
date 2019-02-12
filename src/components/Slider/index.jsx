@@ -44,7 +44,7 @@ class Slider extends Component {
 					{
 						filmList.map((element) => (
 							<Link to="/detail/:type/:id" key={generateUniqueKey()}>
-								<div className="image" />
+								<img className="image" src="../images/film.jpg" alt="" />
 								<div className="film-title"><span>{element.title}</span></div>
 							</Link>
 						))
