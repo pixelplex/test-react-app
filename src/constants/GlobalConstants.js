@@ -1,6 +1,5 @@
 export const TYPE_VIDEO = {
 	tv: 'tv',
-
 	movie: 'movie',
 };
 

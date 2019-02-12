@@ -5,7 +5,7 @@ import * as MovieApi from './../api/MovieApi';
 import * as TvApi from './../api/TvApi';
 import * as DiscoverApi from './../api/DiscoverApi';
 
-import { TYPE_VIDEO } from './../constants/GlobalConstants';
+import { getObjectByField } from './../helpers/GlobalHelper';
 
 class DashboardActionsClass extends BaseActionsClass {
 
@@ -21,57 +21,45 @@ class DashboardActionsClass extends BaseActionsClass {
 	 * @returns {function(*=): Promise<any>}
 	 */
 	getData() {
+		const FIELDS = ['id', 'type', 'title', 'poster_path'];
+
 		return (dispatch, getState) => new Promise((resolve, reject) => {
 			const state = getState();
-			const genres = state.dashboard.get('genres');
+			const genres = state.global.get('genres');
+			dispatch(this.setValue('loading', true));
 
 			const populars = [
 				{
 					title: 'Popular movies',
 					method: MovieApi.getPopular,
-					type: TYPE_VIDEO.movie,
-					fields: {
-						id: 'id',
-						title: 'title',
-						image: 'poster_path',
-					},
 				},
 				{
 					title: 'Popular series',
 					method: TvApi.getPopular,
-					type: TYPE_VIDEO.tv,
-					fields: {
-						id: 'id',
-						title: 'name',
-						image: 'poster_path',
-					},
 				},
 			];
 
 			// Get populars movie, TV and get movie, TV by genres
 			Promise.all([
-				...populars.map(({ title, method, type }) => new Promise((res) => {
+				...populars.map(({ title, method }) => new Promise((res) => {
 					method().then((data) => {
-
-						console.log(data);
-						const list = data.results.map((item) => ({
-							id: item.id,
-							type,
-							title: item.title,
-							image: item.poster_path,
-						}));
-
-						console.log(list);
-
-						res({ title, list: data.results });
+						res({
+							title,
+							list: data.results.map((item) => getObjectByField(FIELDS, item)),
+						});
 					});
 				})),
 				...genres.map((genre) => this.getDataByGenreId(genre.id)
-					.then((data) => ({ title: genre.name, list: data }))),
+					.then((data) => ({
+						title: genre.name,
+						list: data.map((item) => getObjectByField(FIELDS, item)),
+					}))),
 			]).then((data) => {
 				dispatch(this.setValue('categories', data));
+				dispatch(this.setValue('loading', false));
 				resolve();
 			}).catch((error) => {
+				dispatch(this.setValue('loading', false));
 				reject(error);
 			});
 		});

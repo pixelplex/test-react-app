@@ -9,8 +9,8 @@ class GenresActionsClass {
 
 	/**
 	 * Get genres
-	 * @param type {String} tv, movie
-	 * @returns {function(*): Promise<any>}
+	 * @param {string} type
+	 * @returns {Promise<any>}
 	 */
 	getGenres(type) {
 		if (!Object.keys(TYPE_GENRES).includes(type)) {
@@ -23,18 +23,6 @@ class GenresActionsClass {
 			}).catch((error) => {
 				reject(error);
 			});
-
-			// MovieApi.getPopular().then((data) => { console.log(data); });
-			// TvApi.getPopular().then((data) => { console.log(data); });
-
-			/* Promise.all([
-				MovieApi.getPopular(),
-			]).then((data) => {
-				console.log(data);
-				resolve(data);
-			}).catch((error) => {
-				resolve(error);
-			}); */
 		});
 	}
 

@@ -12,6 +12,7 @@ import history from './history';
 import store from './store';
 
 store.dispatch(GlobalActions.init()).then(() => {
+	document.body.classList.remove('l-loading');
 	// Now you can dispatch navigation actions from anywhere!
 	// store.dispatch(push('/foo'))
 	ReactDOM.render(

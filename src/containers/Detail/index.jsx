@@ -1,5 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Divider, Button } from 'semantic-ui-react';
+
+import DetailsActions from '../../actions/DetailsActions';
+
 
 class Detail extends React.Component {
 
@@ -31,4 +35,17 @@ class Detail extends React.Component {
 
 }
 
-export default Detail;
+Detail.propTypes = {
+};
+
+Detail.defaultProps = {
+};
+
+
+export default connect(
+	() => ({
+	}),
+	(dispatch) => ({
+		init: (id) => dispatch(DetailsActions.initDetails(id)),
+	}),
+)(Detail);

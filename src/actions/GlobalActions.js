@@ -2,7 +2,6 @@ import GlobalReducer from '../reducers/GlobalReducer';
 import BaseActionsClass from './BaseActionsClass';
 
 import GenresActions from './GenresActions';
-import DashboardActions from './DashboardActions';
 
 import { TYPE_VIDEO } from './../constants/GlobalConstants';
 import { GENRES } from './../constants/DashboardConstants';
@@ -42,7 +41,7 @@ class GlobalActionsClass extends BaseActionsClass {
 				new Promise((res) => { // Load list genres and choosen necessary id
 					GenresActions.getGenres(TYPE_VIDEO.movie).then((data) => {
 						const genres = data.genres.filter((item) => GENRES.includes(item.name));
-						dispatch(DashboardActions.setValue('genres', genres, false));
+						dispatch(this.setValue('genres', genres, false));
 						res();
 					}).catch((error) => {
 						res(error);

@@ -30,7 +30,8 @@ class Search extends React.Component {
 							<div className="film-title">Film Title</div>
 						</Link>
 						<Link to="/detail/:type/:id" className="element">
-							<img className="image" src="../images/film.jpg" alt="" />
+							{/* <img className="image" src="../images/film.jpg" alt="" /> */}
+							<div className="no-image" />
 							<div className="film-title">Film Title</div>
 						</Link>
 						<Link to="/detail/:type/:id" className="element">

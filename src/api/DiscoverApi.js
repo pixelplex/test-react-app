@@ -1,5 +1,6 @@
 import { get } from '../utils/Api';
 import { DEFAULT } from '../constants/ApiConstants';
+import { TYPE_VIDEO } from '../constants/GlobalConstants';
 
 /**
  * Discover movies by different types of data like average rating, number of votes, genres and certifications.
@@ -39,6 +40,11 @@ import { DEFAULT } from '../constants/ApiConstants';
  */
 export const getMovieDiscover = (params = {}) => new Promise((resolve, reject) => {
 	get('/3/discover/movie', { ...DEFAULT.query, ...params }).then((data) => {
+		data.results = data.results.map((item) => {
+			item.type = TYPE_VIDEO.movie;
+			return item;
+		});
+
 		resolve(data);
 	}).catch((error) => {
 		reject(error);
@@ -73,6 +79,18 @@ export const getMovieDiscover = (params = {}) => new Promise((resolve, reject) =
  */
 export const getTvDiscover = (params = {}) => new Promise((resolve, reject) => {
 	get('/3/discover/tv', { ...DEFAULT.query, ...params }).then((data) => {
+
+		data.results = data.results.map((item) => {
+			item.type = TYPE_VIDEO.tv;
+			item.original_title = item.original_name;
+			item.title = item.name;
+
+			delete item.original_name;
+			delete item.name;
+
+			return item;
+		});
+
 		resolve(data);
 	}).catch((error) => {
 		reject(error);

@@ -6,3 +6,6 @@ export const DEFAULT = {
 	},
 	sizePerPage: 20,
 };
+
+export const IMAGE_URL = 'http://image.tmdb.org/t/p/';
+export const IMAGE_WIDTH = [342];
