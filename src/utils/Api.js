@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export,no-undef */
+/* eslint-disable no-undef,no-throw-literal,no-unused-vars,import/prefer-default-export */
 import qs from 'qs';
 import axios from 'axios';
 

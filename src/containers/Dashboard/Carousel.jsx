@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Swiper from 'react-id-swiper';
 
-import { DETAIL_PATH } from './../../constants/RouterConstants';
+import { VIDEO_DETAIL_PATH } from './../../constants/RouterConstants';
 import { getImagePath } from './../../helpers/ApiHelper';
 
 const Carousel = (props) => {
@@ -43,7 +43,7 @@ const Carousel = (props) => {
 			<Swiper {...params}>
 				{
 					list.map((item) => (
-						<Link to={DETAIL_PATH.replace(/:type/, item.type).replace(/:id/, item.id)} key={item.id}>
+						<Link to={VIDEO_DETAIL_PATH.replace(/:type/, item.type).replace(/:id/, item.id)} key={item.id}>
 							{item.poster_path ?
 								<img className="image" src={getImagePath(item.poster_path)} alt={item.title} />
 								:

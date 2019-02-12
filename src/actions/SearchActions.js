@@ -23,7 +23,6 @@ class SearchActionsClass extends BaseActionsClass {
 		return (dispatch) => new Promise((resolve, reject) => {
 			history.push(`${window.location.pathname}?${qs.stringify({ query })}`);
 
-			dispatch(this.setValue('results', null));
 			SearchApi.searchMulti({ query }).then((data) => {
 				dispatch(this.setValue('results', data.results));
 				resolve();

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { DETAIL_PATH } from '../../constants/RouterConstants';
+import { VIDEO_DETAIL_PATH } from '../../constants/RouterConstants';
 import { getImagePath } from '../../helpers/ApiHelper';
 import SearchActions from '../../actions/SearchActions';
 
@@ -22,7 +22,7 @@ class Results extends React.Component {
 		return (
 			<div className="result-container">
 				{results.map((item) => (
-					<Link to={DETAIL_PATH.replace(/:type/, item.type).replace(/:id/, item.id)} key={item.id} className="element">
+					<Link to={VIDEO_DETAIL_PATH.replace(/:type/, item.type).replace(/:id/, item.id)} key={item.id} className="element">
 						{item.poster_path ?
 							<img className="image" src={getImagePath(item.poster_path)} alt={item.title} />
 							:

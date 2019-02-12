@@ -5,8 +5,8 @@ import { TYPE_VIDEO } from '../constants/GlobalConstants';
 
 /**
  * Get a list of the current popular movies on TMDb. This list updates daily.
- * @param page Page - Specify which page to query.
- * @param region Region - Specify a ISO 3166-1 code to filter release dates. Must be uppercase.
+ * @param {number} page Page - Specify which page to query.
+ * @param {string} region Region - Specify a ISO 3166-1 code to filter release dates. Must be uppercase.
  * @returns {Promise<any>}
  */
 export const getPopular = (page = 1, region = '') => new Promise((resolve, reject) => {
@@ -30,3 +30,21 @@ export const getPopular = (page = 1, region = '') => new Promise((resolve, rejec
 	});
 });
 
+/**
+ * Get the primary TV show details by id.
+ * @param {string} id
+ * @returns {Promise<any>}
+ */
+export const getTvDetailsById = (id) => new Promise((resolve, reject) => {
+	get(`/3/tv/${id}`, { ...DEFAULT.query }).then((data) => {
+		data.type = TYPE_VIDEO.tv;
+		data.original_title = data.original_name;
+		data.title = data.name;
+
+		delete data.original_name;
+		delete data.name;
+		resolve(data);
+	}).catch((error) => {
+		reject(error);
+	});
+});
