@@ -28,13 +28,14 @@ class ModalPlayer extends React.Component {
 	// 	this.props.closeModal();
 	// }
 	//
-	// onCancel() {
-	// 	if (this.props.cancelCallback && typeof this.props.cancelCallback === 'function') {
-	// 		this.props.cancelCallback();
-	// 	}
-	// 	this.props.closeModal();
-	// }
-	//
+
+	onCancel() {
+		if (this.props.cancelCallback && typeof this.props.cancelCallback === 'function') {
+			this.props.cancelCallback();
+		}
+		this.props.closeModal();
+	}
+
 	handleKeyUp(e) {
 		if (e.keyCode === KEY_CODES.ESC_CODE) {
 			this.onCancel();
@@ -47,8 +48,12 @@ class ModalPlayer extends React.Component {
 		} = this.props;
 
 		return (
-			<div style={{ display: show ? 'block' : 'none' }} onClose={() => this.onCancel()}>
-				Modal player
+			<div style={{ display: show ? 'block' : 'none' }} onClose={() => this.onCancel()} className="modal player">
+				<button className="close" onClick={() => this.onCancel()} />
+				<div className="app-wrapper">
+					<p className="video-title">Video Title</p>
+					<div className="video-container" />
+				</div>
 			</div>
 		);
 	}
@@ -57,10 +62,14 @@ class ModalPlayer extends React.Component {
 
 ModalPlayer.propTypes = {
 	show: PropTypes.bool,
+	cancelCallback: PropTypes.func,
+	closeModal: PropTypes.func,
 };
 
 ModalPlayer.defaultProps = {
 	show: false,
+	cancelCallback: null,
+	closeModal: null,
 };
 
 export default connect(

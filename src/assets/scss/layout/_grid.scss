@@ -1,0 +1,13 @@
+.app-wrapper {
+	max-width: 1250px;
+	margin: 0 auto;
+	margin-top: 60px;
+	padding-right: 50px;
+	padding-left: 50px;
+
+	@include res-768 {
+		padding-left: 25px;
+		padding-right: 25px;
+		padding-bottom: 50px;
+	}
+}

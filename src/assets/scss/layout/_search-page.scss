@@ -1,0 +1,123 @@
+.search-field {
+	align-items: center;
+	display: flex;
+	padding: 20px;
+	border: 1px solid #00000042;
+
+	@include res-320 {
+		width: 100%;
+		flex-wrap: wrap;
+		padding: 13px;
+	}
+
+	input {
+		width: 100%;
+		height: 35px;
+		margin-right: 40px;
+		padding-right: 15px;
+		padding-left: 15px;
+
+		@include res-320 {
+			min-width: 100%;
+			margin: 0;
+		}
+	}
+
+	.button {
+		display: flex;
+		min-width: 135px;
+
+		@include res-320 {
+			margin-top: 15px;
+		}
+
+		&.loading {
+			.icon.search {
+				display: none;
+			}
+		}
+
+		.icon.search {
+			flex-shrink: 0;
+			width: 15px;
+			height: 15px;
+			margin: 0 0 0 10px !important;
+			background-image: url(../images/magnifying-glass.svg);
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: contain;
+		}
+	}
+}
+
+.search-result {
+	margin-top: 50px;
+
+	.not-found {
+		font-size: 17px;
+		text-align: center;
+	}
+
+	.title {
+		margin-bottom: 20px;
+		font-size: 18px;
+	}
+
+	.result-container {
+		flex-wrap: wrap;
+		display: flex;
+
+
+		.element {
+			flex-shrink: 0;
+			position: relative;
+			display: flex;
+			width: 200px;
+			height: 250px;
+			margin-right: 30px;
+			margin-bottom: 20px;
+			box-shadow: 0px 0px 3px 0px #0000008f;
+
+			@include res-320 {
+				margin-right: 20px;
+			}
+
+			&:hover {
+				.film-title {
+					opacity: 1;
+				}
+			}
+		}
+
+		.image {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-image: url(../images/film.jpg);
+			background-position: center center;
+			background-size: cover;
+		}
+
+		.film-title {
+			@include stolzl-regular;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			display: flex;
+			width: 100%;
+			height: 100%;
+			min-height: 35px;
+			box-sizing: border-box;
+			margin-top: auto;
+			padding: 10px 20px;
+			background-color: #3a3737cc;
+			color: #ffffff;
+			text-align: center;
+			word-break: break-all;
+			opacity: 0;
+			transition: opacity 0.2s ease-out;
+		}
+	}
+}

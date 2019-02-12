@@ -1,6 +1,12 @@
 import GlobalReducer from '../reducers/GlobalReducer';
 import BaseActionsClass from './BaseActionsClass';
 
+import GenresActions from './GenresActions';
+import DashboardActions from './DashboardActions';
+
+import { TYPE_VIDEO } from './../constants/GlobalConstants';
+import { GENRES } from './../constants/DashboardConstants';
+
 class GlobalActionsClass extends BaseActionsClass {
 
 	/** Initialize reducer
@@ -31,15 +37,23 @@ class GlobalActionsClass extends BaseActionsClass {
 	 * @returns {function(*=): Promise<any>}
 	 */
 	init() {
-		return (dispatch) => new Promise((resolve) => {
+		return (dispatch) => new Promise((resolve, reject) => {
 			Promise.all([
-				// Load data before start page
+				new Promise((res) => { // Load list genres and choosen necessary id
+					GenresActions.getGenres(TYPE_VIDEO.movie).then((data) => {
+						const genres = data.genres.filter((item) => GENRES.includes(item.name));
+						dispatch(DashboardActions.setValue('genres', genres, false));
+						res();
+					}).catch((error) => {
+						res(error);
+					});
+				}),
 			]).then((data) => {
 				dispatch(this.afterInit()).then(() => {
 					resolve(data);
 				});
 			}).catch((error) => {
-				resolve(error);
+				reject(error);
 			});
 		});
 	}

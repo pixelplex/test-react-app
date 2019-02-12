@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export,no-undef */
+/* eslint-disable import/prefer-default-export */
 import { get } from '../utils/Api';
 import { DEFAULT } from '../constants/ApiConstants';
 
@@ -9,7 +9,7 @@ import { DEFAULT } from '../constants/ApiConstants';
  * @returns {Promise<any>}
  */
 export const getPopular = (page = 1, region = '') => new Promise((resolve, reject) => {
-	get('/3/movie/popular', {
+	get('/3/tv/popular', {
 		...DEFAULT.query, page, region,
 	}).then((data) => {
 		resolve(data);
@@ -17,3 +17,4 @@ export const getPopular = (page = 1, region = '') => new Promise((resolve, rejec
 		reject(error);
 	});
 });
+

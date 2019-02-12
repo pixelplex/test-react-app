@@ -1,4 +1,8 @@
-/* eslint-disable import/prefer-default-export */
+export const TYPE_VIDEO = {
+	tv: 'tv',
+
+	movie: 'movie',
+};
 
 export const KEY_CODES = {
 	ENTER_CODE: 13,
