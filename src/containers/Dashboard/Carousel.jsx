@@ -43,7 +43,7 @@ const Carousel = (props) => {
 			<Swiper {...params}>
 				{
 					list.map((item) => (
-						<Link to={VIDEO_DETAIL_PATH.replace(/:type/, item.type).replace(/:id/, item.id)} key={item.id}>
+						<Link to={VIDEO_DETAIL_PATH.replace(/:type/, item.type).replace(/:id/, item.id)} key={item.id} className="element">
 							{item.poster_path ?
 								<img className="image" src={getImagePath(item.poster_path)} alt={item.title} />
 								:

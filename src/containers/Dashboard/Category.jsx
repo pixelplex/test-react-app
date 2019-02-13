@@ -9,7 +9,7 @@ const Category = (props) => {
 	} = props;
 
 	return (
-		<article className="dashboard-film-slider" {...options}>
+		<article className="posters-section is-carousel" {...options}>
 			<div className="title">{title}</div>
 			<Carousel list={list} />
 		</article>

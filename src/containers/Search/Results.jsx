@@ -39,7 +39,7 @@ class Results extends React.Component {
 		const { results } = this.props;
 
 		return (
-			<div className="search-result">
+			<article className="posters-section">
 				{results !== null ?
 					<React.Fragment>
 						<div className="title">Search result</div>
@@ -47,7 +47,7 @@ class Results extends React.Component {
 					</React.Fragment>
 					: null
 				}
-			</div>
+			</article>
 		);
 	}
 
