@@ -41,19 +41,23 @@ class DashboardActionsClass extends BaseActionsClass {
 
 			// Get populars movie, TV and get movie, TV by genres
 			Promise.all([
-				...populars.map(({ title, method }) => new Promise((res) => {
+				...populars.map(({ title, method }) => new Promise((res, rej) => {
 					method().then((data) => {
 						res({
 							title,
 							list: data.results.map((item) => getObjectByField(FIELDS, item)),
 						});
+					}).catch((error) => {
+						rej(error);
 					});
 				})),
 				...genres.map((genre) => this.getDataByGenreId(genre.id)
 					.then((data) => ({
 						title: genre.name,
 						list: data.map((item) => getObjectByField(FIELDS, item)),
-					}))),
+					})).catch((error) => {
+						throw error;
+					})),
 			]).then((data) => {
 				dispatch(this.setValue('categories', data));
 				dispatch(this.setValue('loading', false));

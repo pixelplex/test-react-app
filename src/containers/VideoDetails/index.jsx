@@ -7,9 +7,10 @@ import { Divider, Button } from 'semantic-ui-react';
 import VideoDetailsActions from '../../actions/VideoDetailsActions';
 
 import { getTimeFromMinutes, formatPrice } from '../../helpers/GlobalHelper';
-import { getImagePath } from '../../helpers/ApiHelper';
 
-import PageNotFound from '../../containers/PageNotFound';
+import Poster from '../../components/Poster';
+import PageNotFound from '../PageNotFound';
+import ToastActions from '../../actions/ToastActions';
 
 // Rules for displaying metadata fields
 const METADATA = [
@@ -31,7 +32,9 @@ const METADATA = [
 class VideoDetails extends React.Component {
 
 	componentDidMount() {
-		this.props.getData(this.props.match.params.id, this.props.match.params.type);
+		this.props.getData(this.props.match.params.id, this.props.match.params.type).catch((error) => {
+			ToastActions.toastError(error);
+		});
 	}
 
 	componentWillUnmount() {
@@ -41,9 +44,7 @@ class VideoDetails extends React.Component {
 	renderData(data) {
 
 		if (!data.id) {
-			return (
-				<PageNotFound />
-			);
+			return <PageNotFound />;
 		}
 
 		return (
@@ -69,11 +70,7 @@ class VideoDetails extends React.Component {
 					</div>
 				</div>
 				<div className="right-container">
-					{data.poster_path ?
-						<img src={getImagePath(data.poster_path)} alt={data.title} />
-						:
-						<div className="no-image" />
-					}
+					<Poster image={data.poster_path} alt={data.title} />
 				</div>
 			</React.Fragment>
 		);
@@ -81,6 +78,7 @@ class VideoDetails extends React.Component {
 
 	render() {
 		const { loading, data } = this.props;
+
 		return (
 			<div className={`app-wrapper ${data.id ? 'details-page' : ''} ${loading ? 'l-loading pos-r' : ''}`}>
 				{this.renderData(data)}

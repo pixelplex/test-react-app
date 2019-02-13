@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { VIDEO_DETAIL_PATH } from '../../constants/RouterConstants';
-import { getImagePath } from '../../helpers/ApiHelper';
 import SearchActions from '../../actions/SearchActions';
+
+import Poster from './../../components/Poster';
 
 class Results extends React.Component {
 
@@ -14,20 +15,14 @@ class Results extends React.Component {
 
 	buildResults(results) {
 		if (!results.length) {
-			return (
-				<p className="not-found">Not Found</p>
-			);
+			return <p className="not-found">No results for query</p>;
 		}
 
 		return (
 			<div className="result-container">
 				{results.map((item) => (
 					<Link to={VIDEO_DETAIL_PATH.replace(/:type/, item.type).replace(/:id/, item.id)} key={item.id} className="element">
-						{item.poster_path ?
-							<img className="image" src={getImagePath(item.poster_path)} alt={item.title} />
-							:
-							<div className="no-image" />
-						}
+						<Poster image={item.poster_path} alt={item.title} />
 						<div className="film-title"><span>{item.title}</span></div>
 					</Link>
 				))}

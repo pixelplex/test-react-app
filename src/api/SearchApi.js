@@ -14,6 +14,8 @@ import { TYPE_VIDEO } from '../constants/GlobalConstants';
  */
 export const searchMulti = (params = {}) => new Promise((resolve, reject) => {
 	get('/3/search/multi', { ...DEFAULT.query, ...params }).then((data) => {
+
+		// Cast to single data format
 		data.results = data.results.map((item) => {
 			if (item.media_type === TYPE_VIDEO.tv) {
 				item.original_title = item.original_name;

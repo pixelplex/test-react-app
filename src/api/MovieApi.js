@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export,no-undef */
+/* eslint-disable no-undef */
 import { get } from '../utils/Api';
 import { DEFAULT } from '../constants/ApiConstants';
 import { TYPE_VIDEO } from '../constants/GlobalConstants';
@@ -14,7 +14,7 @@ export const getPopular = (page = 1, region = '') => new Promise((resolve, rejec
 		...DEFAULT.query, page, region,
 	}).then((data) => {
 		data.results = data.results.map((item) => {
-			item.type = TYPE_VIDEO.movie;
+			item.type = TYPE_VIDEO.movie; // It is necessary to keep type the data
 			return item;
 		});
 
@@ -31,7 +31,7 @@ export const getPopular = (page = 1, region = '') => new Promise((resolve, rejec
  */
 export const getMovieDetailsById = (id) => new Promise((resolve, reject) => {
 	get(`/3/movie/${id}`, { ...DEFAULT.query }).then((data) => {
-		data.type = TYPE_VIDEO.movie;
+		data.type = TYPE_VIDEO.movie; // It is necessary to keep type the data
 		resolve(data);
 	}).catch((error) => {
 		reject(error);

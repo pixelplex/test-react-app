@@ -40,8 +40,10 @@ import { TYPE_VIDEO } from '../constants/GlobalConstants';
  */
 export const getMovieDiscover = (params = {}) => new Promise((resolve, reject) => {
 	get('/3/discover/movie', { ...DEFAULT.query, ...params }).then((data) => {
+
+		// Cast to single data format
 		data.results = data.results.map((item) => {
-			item.type = TYPE_VIDEO.movie;
+			item.type = TYPE_VIDEO.movie; // It is necessary to keep type the data
 			return item;
 		});
 
@@ -80,8 +82,9 @@ export const getMovieDiscover = (params = {}) => new Promise((resolve, reject) =
 export const getTvDiscover = (params = {}) => new Promise((resolve, reject) => {
 	get('/3/discover/tv', { ...DEFAULT.query, ...params }).then((data) => {
 
+		// Cast to single data format
 		data.results = data.results.map((item) => {
-			item.type = TYPE_VIDEO.tv;
+			item.type = TYPE_VIDEO.tv; // It is necessary to keep type the data
 			item.original_title = item.original_name;
 			item.title = item.name;
 

@@ -15,7 +15,7 @@ class SearchActionsClass extends BaseActionsClass {
 	}
 
 	/**
-	 * Search movies and TV shows
+	 * Search movies and TV shows by query
 	 * @param {string} query
 	 * @returns {function(*=): Promise<any>}
 	 */

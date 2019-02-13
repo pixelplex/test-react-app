@@ -15,13 +15,13 @@ class VideoDetailsActionsClass extends BaseActionsClass {
 	}
 
 	/**
-	 * Get additional data about media
+	 * Get detailed data by type and id
 	 * @param {string|number} id
 	 * @param {string} type
 	 * @returns {function(*=): Promise<any>}
 	 */
 	getData(id, type) {
-		return (dispatch) => new Promise(() => {
+		return (dispatch) => new Promise((resolve, reject) => {
 			if (!Object.keys(TYPE_VIDEO).includes(type)) {
 				throw new Error('Unknown type');
 			}
@@ -36,8 +36,10 @@ class VideoDetailsActionsClass extends BaseActionsClass {
 			methods[type](id).then((data) => {
 				dispatch(this.setValue('data', data, false));
 				dispatch(this.setValue('loading', false));
-			}).catch(() => {
+				resolve();
+			}).catch((error) => {
 				dispatch(this.setValue('loading', false));
+				reject(error);
 			});
 		});
 	}

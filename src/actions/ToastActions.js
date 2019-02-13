@@ -32,6 +32,13 @@ class ToastActionsClass {
 				autoClose: 3000,
 			});
 		} else if (typeof error === 'object') {
+			if (error.message) {
+				toast.error(error.message, {
+					autoClose: 3000,
+				});
+				return;
+			}
+
 			Object.keys(error).forEach((index) => {
 				error[index].forEach((text) => toast.error(`${index}: ${text}`, {
 					autoClose: 3000,

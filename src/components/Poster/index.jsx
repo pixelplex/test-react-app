@@ -1,33 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getImagePath } from '../../helpers/ApiHelper';
 
 const Poster = (props) => {
-	const { url, image, title } = props;
+	const { image, alt } = props;
 
 	return (
-		<Link to={url}>
+		<React.Fragment>
 			{image ?
-				<img className="image" src={getImagePath(image)} alt={title} />
+				<img className="image" src={getImagePath(image)} alt={alt} />
 				:
 				<div className="no-image" />
 			}
-			<div className="film-title"><span>{title}</span></div>
-		</Link>
+		</React.Fragment>
 	);
 };
 
 Poster.propTypes = {
-	url: PropTypes.string,
 	image: PropTypes.string,
-	title: PropTypes.string,
+	alt: PropTypes.string,
 };
 
 Poster.defaultProps = {
-	url: '',
 	image: '',
-	title: '',
+	alt: '',
 };
 
 export default Poster;

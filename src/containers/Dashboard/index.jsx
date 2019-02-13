@@ -5,11 +5,14 @@ import { connect } from 'react-redux';
 import DashboardActions from '../../actions/DashboardActions';
 
 import Category from './Category';
+import ToastActions from '../../actions/ToastActions';
 
 class Dashboard extends React.Component {
 
 	componentDidMount() {
-		this.props.getData();
+		this.props.getData().catch((error) => {
+			ToastActions.toastError(error);
+		});
 	}
 
 	buildCategories() {

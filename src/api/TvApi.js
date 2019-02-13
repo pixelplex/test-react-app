@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { get } from '../utils/Api';
 import { DEFAULT } from '../constants/ApiConstants';
 import { TYPE_VIDEO } from '../constants/GlobalConstants';
@@ -13,8 +12,10 @@ export const getPopular = (page = 1, region = '') => new Promise((resolve, rejec
 	get('/3/tv/popular', {
 		...DEFAULT.query, page, region,
 	}).then((data) => {
+
+		// Cast to single data format
 		data.results = data.results.map((item) => {
-			item.type = TYPE_VIDEO.tv;
+			item.type = TYPE_VIDEO.tv; // It is necessary to keep type the data
 			item.original_title = item.original_name;
 			item.title = item.name;
 
@@ -37,7 +38,9 @@ export const getPopular = (page = 1, region = '') => new Promise((resolve, rejec
  */
 export const getTvDetailsById = (id) => new Promise((resolve, reject) => {
 	get(`/3/tv/${id}`, { ...DEFAULT.query }).then((data) => {
-		data.type = TYPE_VIDEO.tv;
+
+		// Cast to single data format
+		data.type = TYPE_VIDEO.tv; // It is necessary to keep type the data
 		data.original_title = data.original_name;
 		data.title = data.name;
 

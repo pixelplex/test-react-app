@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { get } from '../utils/Api';
 import { DEFAULT } from '../constants/ApiConstants';
 

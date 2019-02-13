@@ -24,4 +24,6 @@ store.dispatch(GlobalActions.init()).then(() => {
 		</Provider>,
 		document.getElementById('root'),
 	);
+}).catch((error) => {
+	console.error(error);
 });

@@ -6,6 +6,7 @@ import { Formik } from 'formik';
 import SearchActions from './../../actions/SearchActions';
 
 import { getUrlParams } from './../../helpers/NavigationHelper';
+import ToastActions from '../../actions/ToastActions';
 
 class Form extends React.Component {
 
@@ -20,14 +21,17 @@ class Form extends React.Component {
 
 	componentDidMount() {
 		if (this.state.defaultQuery) {
-			this.props.search(this.state.defaultQuery);
+			this.props.search(this.state.defaultQuery).catch((error) => {
+				ToastActions.toastError(error);
+			});
 		}
 	}
 
 	onSubmit(values, { setSubmitting }) {
 		this.props.search(values.query).then(() => {
 			setSubmitting(false);
-		}).catch(() => {
+		}).catch((error) => {
+			ToastActions.toastError(error);
 			setSubmitting(false);
 		});
 	}

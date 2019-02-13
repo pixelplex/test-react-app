@@ -1,24 +1,25 @@
 import * as GenresApi from './../api/GenresApi';
-
-const TYPE_GENRES = {
-	tv: GenresApi.getGenresByTV,
-	movie: GenresApi.getGenresByMovie,
-};
+import { TYPE_VIDEO } from './../constants/GlobalConstants';
 
 class GenresActionsClass {
 
 	/**
-	 * Get genres
+	 * Get genres by type
 	 * @param {string} type
 	 * @returns {Promise<any>}
 	 */
 	getGenres(type) {
-		if (!Object.keys(TYPE_GENRES).includes(type)) {
+		if (!Object.keys(TYPE_VIDEO).includes(type)) {
 			throw new Error('Unknown type');
 		}
 
+		const methods = {
+			[TYPE_VIDEO.tv]: GenresApi.getGenresByTV,
+			[TYPE_VIDEO.movie]: GenresApi.getGenresByMovie,
+		};
+
 		return new Promise((resolve, reject) => {
-			TYPE_GENRES[type]().then((data) => {
+			methods[type]().then((data) => {
 				resolve(data);
 			}).catch((error) => {
 				reject(error);

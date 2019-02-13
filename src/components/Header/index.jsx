@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { DASHBOARD_PATH, SEARCH_PATH } from './../../constants/RouterConstants';
 
 class Header extends Component {
 
+	isActive(path) {
+		const pathArr = window.location.pathname.split('/');
+		return pathArr.length > 1 && path === `/${pathArr[1]}`;
+	}
+
 	render() {
 		return (
 			<header className="app-header">
-				<Link className="link" to={DASHBOARD_PATH}>Home</Link>
-				<Link className="link" to={SEARCH_PATH}>Search</Link>
+				<NavLink className="link" isActive={() => this.isActive(DASHBOARD_PATH)} to={DASHBOARD_PATH}>Home</NavLink>
+				<NavLink className="link" isActive={() => this.isActive(SEARCH_PATH)} to={SEARCH_PATH}>Search</NavLink>
 			</header>
 		);
 	}

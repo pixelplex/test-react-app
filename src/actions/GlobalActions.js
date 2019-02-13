@@ -37,11 +37,16 @@ class GlobalActionsClass extends BaseActionsClass {
 	 */
 	init() {
 		return (dispatch) => new Promise((resolve, reject) => {
+
 			Promise.all([
-				new Promise((res) => { // Load list genres and choosen necessary id
+				new Promise((res) => { // Load list genres and chosen necessary id
+
+					// Get ids of the required genres
+					// Get only genres movies because movies and TV shows have the same id genres
 					GenresActions.getGenres(TYPE_VIDEO.movie).then((data) => {
 						const genres = data.genres.filter((item) => GENRES.includes(item.name));
 						dispatch(this.setValue('genres', genres, false));
+
 						res();
 					}).catch((error) => {
 						res(error);

@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import Swiper from 'react-id-swiper';
 
 import { VIDEO_DETAIL_PATH } from './../../constants/RouterConstants';
-import { getImagePath } from './../../helpers/ApiHelper';
+
+import Poster from './../../components/Poster';
 
 const Carousel = (props) => {
 	const { list } = props;
@@ -44,11 +45,7 @@ const Carousel = (props) => {
 				{
 					list.map((item) => (
 						<Link to={VIDEO_DETAIL_PATH.replace(/:type/, item.type).replace(/:id/, item.id)} key={item.id} className="element">
-							{item.poster_path ?
-								<img className="image" src={getImagePath(item.poster_path)} alt={item.title} />
-								:
-								<div className="no-image" />
-							}
+							<Poster image={item.poster_path} alt={item.title} />
 							<div className="film-title"><span>{item.title}</span></div>
 						</Link>
 					))
