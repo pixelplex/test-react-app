@@ -6,7 +6,7 @@
 	width: 100%;
 	height: 100%;
 	overflow: auto;
-	background: #ffffff;
+	background: #333333;
 
 	.close {
 		position: absolute;
@@ -33,21 +33,57 @@
 	}
 
 	.app-wrapper {
+		display: flex;
+		flex-direction: column;
+
 		min-height: 100%;
 		margin-top: 0;
-		padding-top: 80px;
-		padding-bottom: 80px;
+		// padding-top: 80px;
+		// padding-bottom: 80px;
+		padding-top: 150px;
+		padding-bottom: 150px;
+
+		width: 100%;
+		max-width: 1600px;
+
+		@include res-768 {
+			padding-left: 0;
+			padding-right: 0;
+		}
 
 		.video-title {
+			top: 60px;
+			max-width: 1600px;
+			position: absolute;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			width: 100%;
+			left: 0;
+			padding-left: 50px;
+			padding-right: 50px;
 			margin: 0.67em 0;
 			font-size: 2em;
+			color: #ffffff;
+
+			@include res-768 {
+				padding-left: 25px;
+			}
 		}
 
 		.video-container {
-			width: 100%;
-			height: 500px;
-			margin-top: 100px;
-			background: red;
+			flex-grow: 1;
+			display: flex;
+			// align-items: center;
+			flex-direction: column;
+			justify-content: center;
+			// width: 100%;
+			// max-height: 500px;
+			// margin-top: 50px;
+
+			video {
+				width: 100%;
+				height: 100%;
+			}
 		}
 	}
 }

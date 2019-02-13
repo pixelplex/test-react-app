@@ -1,6 +1,6 @@
 # React Code Assignment
 
-The test project will be a ReactJS web application.
+Web application for browsing the popular movies, display a short detail page of a selected movie and play a short movie trailer
 
 ## Getting started
 

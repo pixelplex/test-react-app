@@ -44,3 +44,9 @@ export const getObjectByField = (fields, object) => fields.reduce((obj, item) =>
 	obj[item] = object[item];
 	return obj;
 }, {});
+
+export const extendObjectKey = (extendedKey, extendedObj) => Object.keys(extendedObj)
+	.reduce((obj, key) => {
+		obj[`${extendedKey}.${key}`] = extendedObj[key];
+		return obj;
+	}, {});

@@ -5,6 +5,7 @@ import Moment from 'react-moment';
 import { Divider, Button } from 'semantic-ui-react';
 
 import VideoDetailsActions from '../../actions/VideoDetailsActions';
+import ModalActions from '../../actions/ModalActions';
 
 import { getTimeFromMinutes, formatPrice } from '../../helpers/GlobalHelper';
 
@@ -41,6 +42,14 @@ class VideoDetails extends React.Component {
 		this.props.clear();
 	}
 
+	onOpen() {
+		const { data } = this.props;
+
+		this.props.openPlayerModal({
+			title: data.title,
+		});
+	}
+
 	renderData(data) {
 
 		if (!data.id) {
@@ -66,7 +75,7 @@ class VideoDetails extends React.Component {
 								))
 							}
 						</ul>
-						<Button primary>Watch Movie</Button>
+						<Button primary onClick={() => this.onOpen()}>Watch Movie</Button>
 					</div>
 				</div>
 				<div className="right-container">
@@ -94,6 +103,7 @@ VideoDetails.propTypes = {
 	match: PropTypes.object.isRequired,
 	loading: PropTypes.bool,
 	data: PropTypes.object,
+	openPlayerModal: PropTypes.func.isRequired,
 };
 
 VideoDetails.defaultProps = {
@@ -109,6 +119,7 @@ export default connect(
 	(dispatch) => ({
 		getData: (id, type) => dispatch(VideoDetailsActions.getData(id, type)),
 		clear: () => dispatch(VideoDetailsActions.clear()),
+		openPlayerModal: (params) => dispatch(ModalActions.openPlayerModal(params)),
 	}),
 )(VideoDetails);
 

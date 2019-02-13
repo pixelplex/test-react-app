@@ -9,3 +9,5 @@ export const KEY_CODES = {
 	MINUS_CODE: 189,
 	FIVE_NUMBER_CODE: 53,
 };
+
+export const VIDEO_URI = '//bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8';

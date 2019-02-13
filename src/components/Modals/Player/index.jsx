@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 import ModalActions from './../../../actions/ModalActions';
 import { MODAL_PLAYER } from './../../../constants/ModalConstants';
-import { KEY_CODES } from '../../../constants/GlobalConstants';
+import ShakaPlayer from '../../ShakaPlayer';
+import { KEY_CODES, VIDEO_URI } from '../../../constants/GlobalConstants';
 
 class ModalPlayer extends React.Component {
 
@@ -21,38 +22,31 @@ class ModalPlayer extends React.Component {
 		document.removeEventListener('keyup', this.handleKeyUp, false);
 	}
 
-	// onSuccess() {
-	// 	if (this.props.successCallback && typeof this.props.successCallback === 'function') {
-	// 		this.props.successCallback();
-	// 	}
-	// 	this.props.closeModal();
-	// }
-	//
-
-	onCancel() {
-		if (this.props.cancelCallback && typeof this.props.cancelCallback === 'function') {
-			this.props.cancelCallback();
-		}
+	onClose() {
 		this.props.closeModal();
 	}
 
 	handleKeyUp(e) {
 		if (e.keyCode === KEY_CODES.ESC_CODE) {
-			this.onCancel();
+			this.onClose();
 		}
 	}
 
 	render() {
-		const {
-			show,
-		} = this.props;
+		const { show, title } = this.props;
 
 		return (
-			<div style={{ display: show ? 'block' : 'none' }} onClose={() => this.onCancel()} className="modal player">
-				<button className="close" onClick={() => this.onCancel()} />
+			<div
+				style={{ display: show ? 'block' : 'none' }}
+				onClose={() => this.onClose()}
+				className="modal player"
+			>
+				<button className="close" onClick={() => this.onClose()} />
 				<div className="app-wrapper">
-					<p className="video-title">Video Title</p>
-					<div className="video-container" />
+					<div className="video-container">
+						<p className="video-title">{title}</p>
+						<ShakaPlayer url={VIDEO_URI} />
+					</div>
 				</div>
 			</div>
 		);
@@ -62,19 +56,20 @@ class ModalPlayer extends React.Component {
 
 ModalPlayer.propTypes = {
 	show: PropTypes.bool,
-	cancelCallback: PropTypes.func,
+	title: PropTypes.string,
 	closeModal: PropTypes.func,
 };
 
 ModalPlayer.defaultProps = {
 	show: false,
-	cancelCallback: null,
+	title: '',
 	closeModal: null,
 };
 
 export default connect(
 	(state) => ({
 		show: state.modal.getIn([MODAL_PLAYER, 'show']),
+		title: state.modal.getIn([MODAL_PLAYER, 'title']),
 	}),
 	(dispatch) => ({
 		closeModal: () => dispatch(ModalActions.closeModal(MODAL_PLAYER)),

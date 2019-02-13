@@ -1,4 +1,4 @@
-/* eslint-disable no-undef,no-throw-literal,no-unused-vars,import/prefer-default-export */
+/* eslint-disable no-undef,no-throw-literal,no-unused-vars,import/prefer-default-export,import/no-unresolved,import/no-webpack-loader-syntax */
 import qs from 'qs';
 import axios from 'axios';
 
@@ -7,7 +7,9 @@ import 'core-js/es6/number';
 import 'core-js/es6/array';
 import 'core-js/es7/array';
 
+require('script-loader!mux.js/dist/mux');
 require('es6-promise').polyfill();
+
 
 const parseServerError = (error) => {
 	const { message } = error;
