@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-
 import { DASHBOARD_PATH, SEARCH_PATH } from './../../constants/RouterConstants';
 
 class Header extends Component {
@@ -13,8 +12,10 @@ class Header extends Component {
 	render() {
 		return (
 			<header className="app-header">
-				<NavLink className="link" isActive={() => this.isActive(DASHBOARD_PATH)} to={DASHBOARD_PATH}>Home</NavLink>
-				<NavLink className="link" isActive={() => this.isActive(SEARCH_PATH)} to={SEARCH_PATH}>Search</NavLink>
+				<nav>
+					<NavLink className="link" isActive={() => this.isActive(DASHBOARD_PATH)} to={DASHBOARD_PATH}>Home</NavLink>
+					<NavLink className="link" isActive={() => this.isActive(SEARCH_PATH)} to={SEARCH_PATH}>Search</NavLink>
+				</nav>
 			</header>
 		);
 	}

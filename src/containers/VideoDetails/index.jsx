@@ -60,7 +60,7 @@ class VideoDetails extends React.Component {
 							{
 								METADATA.map((item) => (item[1](data) ?
 									<li key={item[0]}>
-										<b>{item[0]}:</b> {item[1](data)}
+										<strong>{item[0]}:</strong> {item[1](data)}
 									</li>
 									: null
 								))
