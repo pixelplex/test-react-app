@@ -13,7 +13,7 @@ export default createModule({
 	name: 'modal',
 	initialState: Map({
 		[MODAL_PLAYER]: _.cloneDeep(DEFAULT_FIELDS).merge({
-
+			title: '',
 		}),
 	}),
 	transformations: {

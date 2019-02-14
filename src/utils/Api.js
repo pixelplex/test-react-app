@@ -10,7 +10,6 @@ import 'core-js/es7/array';
 require('script-loader!mux.js/dist/mux');
 require('es6-promise').polyfill();
 
-
 const parseServerError = (error) => {
 	const { message } = error;
 	if (typeof message !== 'string') {

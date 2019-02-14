@@ -21,7 +21,11 @@ class Results extends React.Component {
 		return (
 			<div className="result-container">
 				{results.map((item) => (
-					<Link to={VIDEO_DETAIL_PATH.replace(/:type/, item.type).replace(/:id/, item.id)} key={item.id} className="element">
+					<Link
+						to={VIDEO_DETAIL_PATH.replace(/:type/, item.type).replace(/:id/, item.id)}
+						key={item.id}
+						className="element"
+					>
 						<Poster image={item.poster_path} alt={item.title} />
 						<div className="film-title"><span>{item.title}</span></div>
 					</Link>

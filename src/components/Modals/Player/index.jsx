@@ -45,7 +45,7 @@ class ModalPlayer extends React.Component {
 				<div className="app-wrapper">
 					<div className="video-container">
 						<p className="video-title">{title}</p>
-						<ShakaPlayer url={VIDEO_URI} />
+						{show ? <ShakaPlayer url={VIDEO_URI} /> : null}
 					</div>
 				</div>
 			</div>

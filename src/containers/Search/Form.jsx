@@ -69,7 +69,9 @@ class Form extends React.Component {
 							onBlur={handleBlur}
 							value={values.query}
 						/>
-						<Button loading={isSubmitting} disabled={isSubmitting}>Search <div className="icon search" /></Button>
+						<Button loading={isSubmitting} disabled={isSubmitting}>
+							Search <div className="icon search" />
+						</Button>
 					</form>
 				)}
 			</Formik>

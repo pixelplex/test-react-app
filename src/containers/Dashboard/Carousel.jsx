@@ -64,7 +64,11 @@ class Carousel extends Component {
 				<Swiper {...params} ref={(node) => { this.swiper = node ? node.swiper : null; }} >
 					{
 						list.map((item) => (
-							<Link to={VIDEO_DETAIL_PATH.replace(/:type/, item.type).replace(/:id/, item.id)} key={item.id} className="element">
+							<Link
+								to={VIDEO_DETAIL_PATH.replace(/:type/, item.type).replace(/:id/, item.id)}
+								key={item.id}
+								className="element"
+							>
 								<div className="help-container">
 									<Poster image={item.poster_path} alt={item.title} />
 									<div className="film-title"><span>{item.title}</span></div>

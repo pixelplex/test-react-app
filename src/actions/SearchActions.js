@@ -4,6 +4,7 @@ import history from '../history';
 import SearchReducer from '../reducers/SearchReducer';
 import BaseActionsClass from './BaseActionsClass';
 import * as SearchApi from './../api/SearchApi';
+import { getObjectByField } from '../helpers/GlobalHelper';
 
 class SearchActionsClass extends BaseActionsClass {
 
@@ -24,7 +25,9 @@ class SearchActionsClass extends BaseActionsClass {
 			history.push(`${window.location.pathname}?${qs.stringify({ query })}`);
 
 			SearchApi.searchMulti({ query }).then((data) => {
-				dispatch(this.setValue('results', data.results));
+				const FIELDS = ['id', 'type', 'title', 'poster_path'];
+
+				dispatch(this.setValue('results', data.results.map((item) => getObjectByField(FIELDS, item))));
 				resolve();
 			}).catch((error) => {
 				reject(error);

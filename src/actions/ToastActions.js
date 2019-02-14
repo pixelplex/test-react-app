@@ -1,5 +1,9 @@
 import { toast } from 'react-toastify';
 
+const OPTIONS = {
+	autoClose: 3000,
+};
+
 class ToastActionsClass {
 
 	/**
@@ -7,9 +11,7 @@ class ToastActionsClass {
 	 * @param {string} text
 	 */
 	toastSuccess(text) {
-		toast.success(text, {
-			autoClose: 3000,
-		});
+		toast.success(text, OPTIONS);
 	}
 
 	/**
@@ -17,9 +19,7 @@ class ToastActionsClass {
 	 * @param {string} text
 	 */
 	toastInfo(text) {
-		toast.info(text, {
-			autoClose: 3000,
-		});
+		toast.info(text, OPTIONS);
 	}
 
 	/**
@@ -28,21 +28,15 @@ class ToastActionsClass {
 	 */
 	toastError(error) {
 		if (typeof error === 'string') {
-			toast.error(error, {
-				autoClose: 3000,
-			});
+			toast.error(error, OPTIONS);
 		} else if (typeof error === 'object') {
 			if (error.message) {
-				toast.error(error.message, {
-					autoClose: 3000,
-				});
+				toast.error(error.message, OPTIONS);
 				return;
 			}
 
 			Object.keys(error).forEach((index) => {
-				error[index].forEach((text) => toast.error(`${index}: ${text}`, {
-					autoClose: 3000,
-				}));
+				error[index].forEach((text) => toast.error(`${index}: ${text}`, OPTIONS));
 			});
 		}
 	}

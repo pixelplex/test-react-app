@@ -4,7 +4,6 @@ export const DEFAULT = {
 		api_key: __API_KEY__,
 		language: 'en-US',
 	},
-	sizePerPage: 20,
 };
 
 export const IMAGE_URL = 'http://image.tmdb.org/t/p/';
