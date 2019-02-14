@@ -1,6 +1,6 @@
 stages:
   - test
-  - build
+#  - build
 
 eslint:
   image: node:10.15
@@ -15,41 +15,41 @@ eslint:
   tags:
     - docker
 
-build.develop:
-  stage: build
-  cache:
-    key: $CI_COMMIT_REF_NAME
-    paths:
-      - node_modules
-  script:
-    - npm i
-    - npm run build-dev
-    - rm -rf /home/frontend
-    - cp -r ./dist /home/frontend
-  only:
-    - develop
-  tags:
-    - develop
-  environment:
-    name: development
-
-build.master:
-  stage: build
-  cache:
-    key: $CI_COMMIT_REF_NAME
-    paths:
-      - node_modules
-  script:
-    - npm i
-    - npm run build-stage
-    - rm -rf /home/frontend
-    - cp -r ./dist /home/frontend
-  only:
-    - master
-  tags:
-    - master
-  environment:
-    name: stage
+#build.develop:
+#  stage: build
+#  cache:
+#    key: $CI_COMMIT_REF_NAME
+#    paths:
+#      - node_modules
+#  script:
+#    - npm i
+#    - npm run build-dev
+#    - rm -rf /home/frontend
+#    - cp -r ./dist /home/frontend
+#  only:
+#    - develop
+#  tags:
+#    - develop
+#  environment:
+#    name: development
+#
+#build.master:
+#  stage: build
+#  cache:
+#    key: $CI_COMMIT_REF_NAME
+#    paths:
+#      - node_modules
+#  script:
+#    - npm i
+#    - npm run build-stage
+#    - rm -rf /home/frontend
+#    - cp -r ./dist /home/frontend
+#  only:
+#    - master
+#  tags:
+#    - master
+#  environment:
+#    name: stage
 
 
 # variables:
@@ -76,7 +76,7 @@ build.master:
 #   tags:
 #     - docker
 
-# build: 
+# build:
 #   image: node:8-alpine
 #   stage: build
 #   script:
